@@ -1,8 +1,8 @@
 package com.oerOesreveR.cheese;
 
-import net.minecraftforge.fml.common.Mod;
+        import net.minecraftforge.fml.common.Mod;
 
-import static com.oerOesreveR.cheese.cheese.MOD_ID;
+        import static com.oerOesreveR.cheese.cheese.MOD_ID;
 
 @Mod(MOD_ID)
 public class cheese {
