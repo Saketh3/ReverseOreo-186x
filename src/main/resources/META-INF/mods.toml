@@ -1,6 +1,6 @@
 modLoader="javafml" #mandatory
 loaderVersion="[28.1]" #mandatory. 26 for 1.14.2, 27 for 1.14.3
-credits="Damn Daniel, back at it again with the white vans" #optional
+credits="Dan Daniel, back at it again with the white vans" #optional
 [[mods]] #mandatory
 modId="cheese" #mandatory
 version="1.0" #mandatory
