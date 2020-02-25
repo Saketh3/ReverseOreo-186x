@@ -1,12 +1,16 @@
 package com.oerOesreveR.cheese;
 
+import com.oerOesreveR.cheese.renders.TutorialRenderRegistry;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static com.oerOesreveR.cheese.cheese.MOD_ID;
@@ -32,8 +36,27 @@ public class cheeses {
         //In here you pass in all item instances you want to register.
         //Make sure you always set the registry name.
         event.getRegistry().registerAll(
-                new Item((new Item.Properties().group(ItemGroup.FOOD).maxStackSize(32).food( (new Food.Builder()).hunger(4).saturation(0.3F).build()))).setRegistryName(MOD_ID, "swiss"),
+                new Item((new Item.Properties().group(ItemGroup.FOOD).maxStackSize(33).food( (new Food.Builder()).hunger(4).saturation(0.3F).build()))).setRegistryName(MOD_ID, "swiss"),
                 new Item(new Item.Properties()).setRegistryName(MOD_ID, "swill")
         );
+
+        TutorialEntities.registerEntitySpawnEggs(event);
+    }
+
+
+    public static Item tutorial_entity_egg;
+
+    public static void registerBlocks(final RegistryEvent.Register<EntityType<?>> event) {
+        event.getRegistry().registerAll(
+                TutorialEntities.TUTORIAL_ENTITY
+        );
+    }
+
+    public static ResourceLocation location(String name) {
+        return new ResourceLocation(MOD_ID, name);
+    }
+    private void clientRegistries(final FMLClientSetupEvent event)
+    {
+        TutorialRenderRegistry.registryEntityRenders();
     }
 }
