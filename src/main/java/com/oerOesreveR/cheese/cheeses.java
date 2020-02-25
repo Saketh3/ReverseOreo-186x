@@ -40,7 +40,7 @@ public class cheeses {
         //Make sure you always set the registry name.
         event.getRegistry().registerAll(
                 new Item((new Item.Properties().group(ItemGroup.FOOD).maxStackSize(33).food( (new Food.Builder()).hunger(4).saturation(0.3F).build()))).setRegistryName(MOD_ID, "swiss"),
-                new Item(new Item.Properties()).setRegistryName(MOD_ID, "swill"),
+                new Item(new Item.Properties()).setRegistryName(MOD_ID, "swill")
         );
 
         TutorialEntities.registerEntitySpawnEggs(event);
