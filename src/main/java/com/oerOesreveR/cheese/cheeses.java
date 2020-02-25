@@ -24,7 +24,7 @@ import static com.oerOesreveR.cheese.cheese.MOD_ID;
 @ObjectHolder(MOD_ID)
 public class cheeses {
     // public static final Food swiss = (new Food.Builder()).hunger(4).saturation(0.3F).build();
-    // public static final Item swill = null;
+    public static final Item swill = null;
 
     /**
      * The actual event handler that registers the custom items.
