@@ -54,8 +54,4 @@ public class cheeses {
     public static ResourceLocation location(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
-    private void clientRegistries(final FMLClientSetupEvent event)
-    {
-        TutorialRenderRegistry.registryEntityRenders();
-    }
 }

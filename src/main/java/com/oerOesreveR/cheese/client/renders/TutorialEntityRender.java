@@ -22,9 +22,7 @@ public class TutorialEntityRender extends LivingRenderer<TutorialEntity, Tutoria
         return cheeses.location("textures/entity/tutorial_entity.png");
     }
 
-    public static class RenderFactory implements IRenderFactory<TutorialEntity>
-    {
-
+    public static class RenderFactory implements IRenderFactory<TutorialEntity> {
         @Override
         public EntityRenderer<? super TutorialEntity> createRenderFor(EntityRendererManager manager) {
             return new TutorialEntityRender(manager);

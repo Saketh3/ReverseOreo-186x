@@ -23,10 +23,8 @@ public class cheese {
     public static final String MOD_ID = "cheese";
     public static cheese instance;
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    //public static final ItemGroup CHEESEY = new CheeseItems();
-    public cheese(){
-        instance = this;
 
+    public cheese(){
         instance = this;
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER, "tutorialmod-server.toml");
@@ -41,14 +39,11 @@ public class cheese {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        //OreGeneration.setupOreGeneration();
+    private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("Setup method registered.");
     }
 
-    private void clientRegistries(final FMLClientSetupEvent event)
-    {
+    private void clientRegistries(final FMLClientSetupEvent event) {
         TutorialRenderRegistry.registryEntityRenders();
         LOGGER.info("clientRegistries method registered.");
     }

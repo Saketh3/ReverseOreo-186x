@@ -10,7 +10,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TutorialEntityModel extends VillagerModel<TutorialEntity> {
-
     public TutorialEntityModel(float scale) {
         super(scale);
     }
