@@ -23,7 +23,7 @@ public class TutorialEntities {
     public static Item registerEntitySpawnEgg(EntityType<?> type, int color1, int color2, String name)
     {
         SpawnEggItem item = new SpawnEggItem(type, color1, color2, new Item.Properties().group(ItemGroup.MISC));
-        item.setRegistryName(MOD_ID);
+        item.setRegistryName(MOD_ID, name);
         return item;
     }
 }
