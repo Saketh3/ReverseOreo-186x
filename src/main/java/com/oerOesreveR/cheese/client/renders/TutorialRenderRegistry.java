@@ -1,4 +1,4 @@
-package com.oerOesreveR.cheese.renders;
+package com.oerOesreveR.cheese.client.renders;
 
 import com.oerOesreveR.cheese.TutorialEntity;
 import net.minecraftforge.api.distmarker.Dist;

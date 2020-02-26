@@ -1,13 +1,11 @@
-package com.oerOesreveR.cheese.renders;
+package com.oerOesreveR.cheese.client.renders;
 
-import com.oerOesreveR.cheese.TutorialEntities;
 import com.oerOesreveR.cheese.TutorialEntity;
 import com.oerOesreveR.cheese.cheeses;
-import com.oerOesreveR.cheese.models.TutorialEntityModel;
+import com.oerOesreveR.cheese.client.models.TutorialEntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

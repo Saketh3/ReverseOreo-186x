@@ -1,4 +1,4 @@
-package com.oerOesreveR.cheese.models;
+package com.oerOesreveR.cheese.client.models;
 
 import com.oerOesreveR.cheese.TutorialEntity;
 import net.minecraft.client.renderer.entity.model.CowModel;

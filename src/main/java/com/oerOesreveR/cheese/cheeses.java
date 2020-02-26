@@ -1,10 +1,7 @@
 package com.oerOesreveR.cheese;
 
-import com.oerOesreveR.cheese.renders.TutorialRenderRegistry;
-import net.minecraft.client.renderer.tileentity.MobSpawnerTileEntityRenderer;
+import com.oerOesreveR.cheese.client.renders.TutorialRenderRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
