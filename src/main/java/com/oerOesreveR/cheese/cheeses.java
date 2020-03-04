@@ -20,7 +20,7 @@ import static com.oerOesreveR.cheese.cheese.MOD_ID;
  */
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(MOD_ID)
-public class cheeses {
+public class cheeses{
     // public static final Food swiss = (new Food.Builder()).hunger(4).saturation(0.3F).build();
     public static Item swill;
     public static Item tutorial_entity_egg;
