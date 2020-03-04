@@ -1,5 +1,6 @@
 {
     "item.cheese.swill": "Big Cheese",
     "item.cheese.swiss": "Big Swiss",
-    "item.cheese.tutorial_entity_egg": "Daniel's NotPig"
+    "item.cheese.not_pig_spawn_egg": "Daniel's NotPig",
+    "entity.cheese.not_a_pig": "I'm not a pig"
 }

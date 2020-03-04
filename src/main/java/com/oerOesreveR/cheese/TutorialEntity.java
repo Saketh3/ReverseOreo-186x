@@ -17,7 +17,7 @@ public class TutorialEntity extends CreatureEntity {
 
 
     public TutorialEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super((EntityType<? extends CreatureEntity>) TutorialEntities.TUTORIAL_ENTITY, worldIn);
+        super((EntityType<? extends CreatureEntity>) cheeses.TUTORIAL_ENTITY, worldIn);
     }
 
     @Override
