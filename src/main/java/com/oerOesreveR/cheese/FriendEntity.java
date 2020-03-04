@@ -29,15 +29,13 @@ public class FriendEntity extends TameableEntity {
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
-       // super.setTamed(true);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 4.0D, 10.0F, 2.0F));
+        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
         this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.1D));
-        //this.goalSelector.addGoal(2, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
         this.goalSelector.addGoal(3, new TemptGoal(this, 0.5D, Ingredient.fromItems(cheeses.swiss), false));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
     }
@@ -69,6 +67,7 @@ public class FriendEntity extends TameableEntity {
                 if(item == cheeses.swiss){
                     this.setTamedBy(player);
                     super.setTamed(true);
+                    itemstack.shrink(1);
                     return true;
                 }
                 return false;
