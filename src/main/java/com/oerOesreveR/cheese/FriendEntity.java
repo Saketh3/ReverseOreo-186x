@@ -15,11 +15,11 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 
-public class TutorialEntity extends CreatureEntity {
+public class FriendEntity extends CreatureEntity {
 
 
 
-    public TutorialEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public FriendEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super((EntityType<? extends CreatureEntity>) cheeses.Friend, worldIn);
     }
 

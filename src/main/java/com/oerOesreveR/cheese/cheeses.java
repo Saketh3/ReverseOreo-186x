@@ -1,6 +1,5 @@
 package com.oerOesreveR.cheese;
 
-import com.oerOesreveR.cheese.client.renders.TutorialRenderRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
@@ -8,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 import static com.oerOesreveR.cheese.cheese.MOD_ID;
 
@@ -20,7 +18,7 @@ import static com.oerOesreveR.cheese.cheese.MOD_ID;
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(MOD_ID)
 public class cheeses {
-    public static EntityType<?> Friend = EntityType.Builder.create(TutorialEntity::new, EntityClassification.CREATURE).build(MOD_ID + ":not_a_pig").setRegistryName(cheeses.location("not_a_pig"));
+    public static EntityType<?> Friend = EntityType.Builder.create(FriendEntity::new, EntityClassification.CREATURE).build(MOD_ID + ":not_a_pig").setRegistryName(cheeses.location("not_a_pig"));
     public static Item swill;
     public static Item daniel_egg;
     public static Item swiss;
