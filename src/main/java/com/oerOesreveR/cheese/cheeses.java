@@ -20,9 +20,8 @@ import static com.oerOesreveR.cheese.cheese.MOD_ID;
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(MOD_ID)
 public class cheeses {
-    public static EntityType<?> TUTORIAL_ENTITY = EntityType.Builder.create(TutorialEntity::new, EntityClassification.CREATURE).build(MOD_ID + ":not_a_pig").setRegistryName(cheeses.location("not_a_pig"));
+    public static EntityType<?> Friend = EntityType.Builder.create(TutorialEntity::new, EntityClassification.CREATURE).build(MOD_ID + ":not_a_pig").setRegistryName(cheeses.location("not_a_pig"));
     public static Item swill;
-    public static Item tutorial_entity_egg;
     public static Item daniel_egg;
     public static Item swiss;
 
@@ -34,29 +33,25 @@ public class cheeses {
      */
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        //In here you pass in all item instances you want to register.
-        //Make sure you always set the registry name.
         event.getRegistry().registerAll(
                 swiss = new Item((new Item.Properties().group(ItemGroup.FOOD).maxStackSize(33).food( (new Food.Builder()).hunger(4).saturation(0.3F).build()))).setRegistryName(MOD_ID, "swiss"),
                 swill = new Item(new Item.Properties()).setRegistryName(MOD_ID, "swill"),
-                daniel_egg = new SpawnEggItem(TUTORIAL_ENTITY, 0x32a846, 0x32a847, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(MOD_ID, "not_pig_spawn_egg")
+                daniel_egg = new SpawnEggItem(Friend, 0x32a846, 0x32a847, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(MOD_ID, "not_pig_spawn_egg")
         );
     }
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<EntityType<?>> event) {
         event.getRegistry().registerAll(
-              //  TUTORIAL_ENTITY
+
         );
     }
 
     @SubscribeEvent
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
         event.getRegistry().registerAll(
-                        TUTORIAL_ENTITY
+                        Friend
                 );
-
-        //TutorialEntities.registerEntityWorldSpawns();
     }
     public static ResourceLocation location(String name) {
         return new ResourceLocation(MOD_ID, name);
