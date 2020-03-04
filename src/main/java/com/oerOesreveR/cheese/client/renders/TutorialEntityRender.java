@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 @OnlyIn(Dist.CLIENT)
 public class TutorialEntityRender extends LivingRenderer<TutorialEntity, TutorialEntityModel> {
     public TutorialEntityRender(EntityRendererManager manager) {
-        super(manager, new TutorialEntityModel(2), 0f);
+        super(manager, new TutorialEntityModel(0), 0f);
     }
 
     @Override
