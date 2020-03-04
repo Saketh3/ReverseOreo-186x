@@ -69,9 +69,13 @@ public class FriendEntity extends TameableEntity {
                 if(item == cheeses.swiss){
                     this.setTamedBy(player);
                     super.setTamed(true);
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
+        return false;
     }
 
     @Nullable
