@@ -23,6 +23,7 @@ public class TutorialEntityRender extends LivingRenderer<TutorialEntity, Tutoria
     }
 
     public static class RenderFactory implements IRenderFactory<TutorialEntity> {
+        public static final RenderFactory INSTANCE = new RenderFactory();
         @Override
         public EntityRenderer<? super TutorialEntity> createRenderFor(EntityRendererManager manager) {
             return new TutorialEntityRender(manager);
