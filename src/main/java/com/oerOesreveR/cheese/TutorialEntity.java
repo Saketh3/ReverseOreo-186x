@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.goal.FollowMobGoal;
 import net.minecraft.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
 
@@ -20,7 +21,8 @@ public class TutorialEntity extends CreatureEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1.2));
+        this.goalSelector.addGoal(1, new RandomWalkingGoal(this, .4));
+        this.goalSelector.addGoal(2, new FollowMobGoal(this, PigEntity, 1.0D, 3.0F, 7.0F));
     }
 
     @Override
