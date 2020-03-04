@@ -27,6 +27,7 @@ public class TutorialEntity extends CreatureEntity {
         this.goalSelector.addGoal(2, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(cheeses.swiss), false));
         //this.goalSelector.addGoal(4, new FollowOwnerGoal(this,1.0, 10.0F, 2.0F));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
     }
 
     @Override
