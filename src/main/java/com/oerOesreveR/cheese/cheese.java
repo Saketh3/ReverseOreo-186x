@@ -44,4 +44,5 @@ public class cheese {
         FriendRenderRegistry.registryEntityRenders();
         LOGGER.info("clientRegistries method registered.");
     }
+
 }

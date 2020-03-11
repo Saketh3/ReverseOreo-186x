@@ -1,5 +1,10 @@
 package com.oerOesreveR.cheese;
 
+import com.oerOesreveR.cheese.util.handlers.SoundsHandler;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.task.WalkRandomlyTask;
 import net.minecraft.entity.ai.goal.*;
@@ -10,25 +15,31 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.particles.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraftforge.registries.IRegistryDelegate;
 
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
     private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(FriendEntity.class, DataSerializers.VARINT);
-
+    public static final BasicParticleType HEART = register("heart", false);
+    public static final BasicParticleType SMOKE = register("smoke", false);
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
+    }
+    private static BasicParticleType register(String key, boolean alwaysShow) {
+        return (BasicParticleType) Registry.<ParticleType<? extends IParticleData>>register(Registry.PARTICLE_TYPE, key, new BasicParticleType(alwaysShow));
     }
 
     @Override
@@ -48,15 +59,15 @@ public class FriendEntity extends TameableEntity {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_PIG_AMBIENT;
+        return SoundsHandler.ENTITY_FRIEND_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
+        return SoundsHandler.ENTITY_FRIEND_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_WITHER_DEATH;
+        return SoundsHandler.ENTITY_FRIEND_DEATH;
     }
 
     public boolean processInteract(PlayerEntity player, Hand hand){
