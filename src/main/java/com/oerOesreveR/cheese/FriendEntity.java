@@ -95,7 +95,16 @@ public class FriendEntity extends TameableEntity {
         if (!play) {
             iparticledata = ParticleTypes.SMOKE;
         }
+
+        for(int i = 0; i < 7; ++i) {
+            double d0 = this.rand.nextGaussian() * 0.02D;
+            double d1 = this.rand.nextGaussian() * 0.02D;
+            double d2 = this.rand.nextGaussian() * 0.02D;
+            this.world.addParticle(iparticledata, this.posX + (double)(this.rand.nextFloat() * this.getWidth() * 2.0F) - (double)this.getWidth(), this.posY + 0.5D + (double)(this.rand.nextFloat() * this.getHeight()), this.posZ + (double)(this.rand.nextFloat() * this.getWidth() * 2.0F) - (double)this.getWidth(), d0, d1, d2);
+        }
+
     }
+
     public void setCollarColor(DyeColor collarcolor) {
         this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
     }
