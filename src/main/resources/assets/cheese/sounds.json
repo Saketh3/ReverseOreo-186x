@@ -3,18 +3,18 @@
 	{
 		"category": "entity",
 		"subtitle": "entity.friend.ambient",
-		"sounds": [{"name":"hm:entity/friend/ambient","stream":"true"}]
+		"sounds": [{"name":"cheese:entity/friend/ambient","stream":"true"}]
 	},
 	"entity.friend.hurt":
 	{
 		"category": "entity",
 		"subtitle": "entity.friend.hurt",
-		"sounds": [{"name":"hm:entity/friend/hurt","stream":"true"}]
+		"sounds": [{"name":"cheese:entity/friend/hurt","stream":"true"}]
 	},
 	"entity.friend.death":
 	{
 		"category": "entity",
 		"subtitle": "entity.friend.death",
-		"sounds": [{"name":"hm:entity/friend/death","stream":"true"}]
+		"sounds": [{"name":"cheese:entity/friend/death","stream":"true"}]
 	}
 }
