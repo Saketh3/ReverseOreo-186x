@@ -10,12 +10,15 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.particles.IParticleData;
 
 import javax.annotation.Nullable;
 
@@ -87,6 +90,12 @@ public class FriendEntity extends TameableEntity {
         return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
     }
 
+    protected void playTameEffect(boolean play) {
+        IParticleData iparticledata = ParticleTypes.HEART;
+        if (!play) {
+            iparticledata = ParticleTypes.SMOKE;
+        }
+    }
     public void setCollarColor(DyeColor collarcolor) {
         this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
     }
