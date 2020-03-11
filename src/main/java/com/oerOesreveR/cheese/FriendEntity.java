@@ -1,17 +1,18 @@
 package com.oerOesreveR.cheese;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.task.WalkRandomlyTask;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
 
 
 public class FriendEntity extends TameableEntity {
-
+    private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(FriendEntity.class, DataSerializers.VARINT);
 
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
@@ -75,6 +76,13 @@ public class FriendEntity extends TameableEntity {
             return false;
         }
         return false;
+    }
+    public DyeColor getCollarColor() {
+        return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
+    }
+
+    public void setCollarColor(DyeColor collarcolor) {
+        this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
     }
 
     @Nullable
