@@ -5,26 +5,30 @@ import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.task.WalkRandomlyTask;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.particles.IParticleData;
 
 import javax.annotation.Nullable;
 
-
 public class FriendEntity extends TameableEntity {
-
+    private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(FriendEntity.class, DataSerializers.VARINT);
 
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
@@ -74,8 +78,31 @@ public class FriendEntity extends TameableEntity {
                 return false;
             }
             return false;
+        }else if (item instanceof DyeItem) {
+            DyeColor dyecolor = ((DyeItem)item).getDyeColor();
+            if (dyecolor != this.getCollarColor()) {
+                this.setCollarColor(dyecolor);
+                if (!player.abilities.isCreativeMode) {
+                    itemstack.shrink(1);
+                }
+
+                return true;
+            }
         }
         return false;
+    }
+    public DyeColor getCollarColor() {
+        return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
+    }
+
+    protected void playTameEffect(boolean play) {
+        IParticleData iparticledata = ParticleTypes.HEART;
+        if (!play) {
+            iparticledata = ParticleTypes.SMOKE;
+        }
+    }
+    public void setCollarColor(DyeColor collarcolor) {
+        this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
     }
 
     @Nullable
