@@ -1,9 +1,12 @@
 package com.oerOesreveR.cheese;
 
+import com.oerOesreveR.cheese.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -54,4 +57,10 @@ public class cheeses {
     public static ResourceLocation location(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
+
+    @SubscribeEvent
+    public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
+        event.getRegistry().registerAll(SoundsHandler.ENTITY_FRIEND_AMBIENT,SoundsHandler.ENTITY_FRIEND_HURT,SoundsHandler.ENTITY_FRIEND_DEATH);
+    }
+
 }

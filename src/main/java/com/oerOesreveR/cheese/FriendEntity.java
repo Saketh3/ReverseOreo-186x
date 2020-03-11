@@ -1,5 +1,6 @@
 package com.oerOesreveR.cheese;
 
+import com.oerOesreveR.cheese.util.handlers.SoundsHandler;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -48,15 +49,15 @@ public class FriendEntity extends TameableEntity {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_PIG_AMBIENT;
+        return SoundsHandler.ENTITY_FRIEND_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
+        return SoundsHandler.ENTITY_FRIEND_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_WITHER_DEATH;
+        return SoundsHandler.ENTITY_FRIEND_DEATH;
     }
 
     public boolean processInteract(PlayerEntity player, Hand hand){
