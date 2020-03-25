@@ -71,6 +71,7 @@ public class FriendEntity extends TameableEntity {
                     this.setTamedBy(player);
                     super.setTamed(true);
                     itemstack.shrink(1);
+                    this.playTameEffect(true);
                     return true;
                 }
                 return false;
