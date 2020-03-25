@@ -7,15 +7,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -24,7 +18,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
-    private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(FriendEntity.class, DataSerializers.VARINT);
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
@@ -74,14 +67,9 @@ public class FriendEntity extends TameableEntity {
                 return false;
             }
             return false;
-        } else if (item instanceof DyeItem) {
-            DyeColor dyecolor = ((DyeItem) item).getDyeColor();
-
         }
         return false;
     }
-
-   
 
     @Nullable
     @Override
