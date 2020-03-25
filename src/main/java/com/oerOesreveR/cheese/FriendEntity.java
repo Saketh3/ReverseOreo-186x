@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraftforge.registries.IRegistryDelegate;
 
+
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
@@ -93,6 +94,7 @@ public class FriendEntity extends TameableEntity {
     public DyeColor getCollarColor() {
         return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
     }
+
 
 
     public void setCollarColor(DyeColor collarcolor) {
