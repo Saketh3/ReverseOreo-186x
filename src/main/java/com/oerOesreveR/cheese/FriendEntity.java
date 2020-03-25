@@ -27,6 +27,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.registries.IRegistryDelegate;
 
+
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
@@ -115,6 +116,7 @@ public class FriendEntity extends TameableEntity {
         }
 
     }
+
 
     public void setCollarColor(DyeColor collarcolor) {
         this.dataManager.set(COLLAR_COLOR, collarcolor.getId());
