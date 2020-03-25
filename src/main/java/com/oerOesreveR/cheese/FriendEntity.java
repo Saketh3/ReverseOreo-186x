@@ -15,7 +15,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -23,8 +22,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraftforge.registries.IRegistryDelegate;
 
 
@@ -32,15 +29,10 @@ import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
     private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.createKey(FriendEntity.class, DataSerializers.VARINT);
-    public static final BasicParticleType HEART = register("heart", false);
-    public static final BasicParticleType SMOKE = register("smoke", false);
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
-    }
-    private static BasicParticleType register(String key, boolean alwaysShow) {
-        return (BasicParticleType) Registry.<ParticleType<? extends IParticleData>>register(Registry.PARTICLE_TYPE, key, new BasicParticleType(alwaysShow));
     }
 
     @Override
@@ -102,20 +94,6 @@ public class FriendEntity extends TameableEntity {
         return DyeColor.byId(this.dataManager.get(COLLAR_COLOR));
     }
 
-    protected void playTameEffect(boolean play) {
-        IParticleData iparticledata = ParticleTypes.HEART;
-        if (!play) {
-            iparticledata = ParticleTypes.SMOKE;
-        }
-
-        for(int i = 0; i < 7; ++i) {
-            double d0 = this.rand.nextGaussian() * 0.02D;
-            double d1 = this.rand.nextGaussian() * 0.02D;
-            double d2 = this.rand.nextGaussian() * 0.02D;
-            this.world.addParticle(iparticledata, this.posX + (double)(this.rand.nextFloat() * this.getWidth() * 2.0F) - (double)this.getWidth(), this.posY + 0.5D + (double)(this.rand.nextFloat() * this.getHeight()), this.posZ + (double)(this.rand.nextFloat() * this.getWidth() * 2.0F) - (double)this.getWidth(), d0, d1, d2);
-        }
-
-    }
 
 
     public void setCollarColor(DyeColor collarcolor) {
