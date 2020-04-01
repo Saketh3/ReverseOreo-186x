@@ -36,7 +36,7 @@ public class cheeses {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
                 swiss = new Item((new Item.Properties().group(ItemGroup.FOOD).maxStackSize(33).food( (new Food.Builder()).hunger(4).saturation(0.3F).build()))).setRegistryName(MOD_ID, "swiss"),
-                swill = new Item(new Item.Properties()).setRegistryName(MOD_ID, "swill"),
+                swill = new Item(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(MOD_ID, "swill"),
                 daniel_egg = new SpawnEggItem(Friend, 0xffffff, 0xffffff, new Item.Properties().group(ItemGroup.MISC)).setRegistryName(MOD_ID, "daniel_egg")
         );
     }

@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
-
+    private boolean hungryForWood = true;
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
@@ -27,10 +27,11 @@ public class FriendEntity extends TameableEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.1D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 0.5D, Ingredient.fromItems(cheeses.swiss), false));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(1, new BreakTreeGoal(this, 20));
+        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
+        this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 0.1D));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 0.5D, Ingredient.fromItems(cheeses.swiss), false));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
     }
 
     @Override
@@ -66,12 +67,19 @@ public class FriendEntity extends TameableEntity {
                     itemstack.shrink(1);
                     this.playTameEffect(true);
                     return true;
+                } else if(item == cheeses.swill){
+                    this.hungryForWood = !this.hungryForWood;
+                    itemstack.shrink(1);
+                    return true;
                 }
                 return false;
             }
             return false;
         }
         return false;
+    }
+    public boolean isHungryForWood (){
+        return hungryForWood;
     }
 
     @Nullable
