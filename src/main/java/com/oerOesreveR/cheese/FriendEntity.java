@@ -40,14 +40,17 @@ public class FriendEntity extends TameableEntity {
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3d);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundsHandler.ENTITY_FRIEND_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundsHandler.ENTITY_FRIEND_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundsHandler.ENTITY_FRIEND_DEATH;
     }

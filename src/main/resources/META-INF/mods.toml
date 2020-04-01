@@ -8,4 +8,3 @@ displayName="Not about cheese" #mandatory
 description='''
 A mod that's definentally not about cheese
 '''
- public static Inventory friendInventory = .createInventory(null, 9, "@@@PLACEHOLDER MESSAGE 1@@@");
