@@ -60,7 +60,8 @@ public class cheeses {
 
     @SubscribeEvent
     public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
-        event.getRegistry().registerAll();
+       // event.getRegistry().registerAll();
+        SoundsHandler.registerSounds();
     }
 
     public static void preInitRegistries() {
