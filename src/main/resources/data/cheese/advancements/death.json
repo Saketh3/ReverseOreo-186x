@@ -1,0 +1,36 @@
+{
+    "__comment": "subscribe to pewdiepie",
+    "display": {
+        "title": {
+            "text": "No please",
+            "color": "black",
+            "obfuscated": true
+        },
+        "description": {
+            "text": "Please don't kill him he's all I have left",
+            "color": "dark_gray",
+            "italic": true
+        },
+        "icon": {
+            "item": "minecraft:wither_rose"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "SquidwardDead": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "cheese:not_a_pig"
+                }
+            }
+        }
+    },
+    "rewards": {
+        "experience": 1337
+    },
+    "parent": "cheese:squidward"
+}

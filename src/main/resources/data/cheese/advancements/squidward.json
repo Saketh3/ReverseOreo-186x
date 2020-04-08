@@ -1,0 +1,38 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Deluxe Villager",
+            "color": "aqua",
+            "italic": true
+        },
+        "description": {
+            "text": "Squidward has blessed us with his presence praise jebus and the bibble"
+        },
+        "icon": {
+            "item": "cheese:daniel_egg"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "SpawnFriend": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "cheese:daniel_egg",
+                    "count": {
+                        "min": 1,
+                        "max": 1
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "experience": 1
+    },
+    "parent": "cheese:root"
+}
