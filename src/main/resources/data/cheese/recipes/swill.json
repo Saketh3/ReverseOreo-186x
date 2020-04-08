@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "minecraft:milk_bucket"
+    },
+    "result": "cheese:swill",
+    "experience": 10,
+    "cookingtime": 2400
+}

@@ -1,0 +1,42 @@
+{
+    "__comment": "this is stupid",
+    "display": {
+        "title": {
+            "text": "Deluxe Milk",
+            "color": "yellow",
+            "italic": true,
+            "strikethrough": false,
+            "obfuscated": false
+        },
+        "description": {
+            "text": "I don't quite think that's how cheese is made"
+        },
+        "icon": {
+            "item": "cheese:swiss"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/gui/advancements/backgrounds/lava.png"
+    },
+    "criteria": {
+        "Cheese": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "cheese:swiss",
+                        "count": {
+                            "min": 1,
+                            "max": 1
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "experience": 1
+    }
+}
