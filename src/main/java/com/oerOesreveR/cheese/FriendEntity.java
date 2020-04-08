@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
-    private boolean hungryForWood = true;
+    private boolean hungryForWood = false;
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
