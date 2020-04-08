@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "CLC",
+        " I "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:diamond"
+        },
+        "C": {
+            "item": "cheese:swiss"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        },
+        "I": {
+            "item": "minecraft:ink_sac"
+        }
+    },
+    "result": {
+        "item": "cheese:daniel_egg",
+        "count": 1
+    }
+}
