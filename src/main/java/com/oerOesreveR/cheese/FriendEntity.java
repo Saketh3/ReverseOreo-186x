@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
-    private boolean hungryForWood = true;
+    private boolean hungryForWood = false;
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         super.setSitting(false);
@@ -67,7 +67,13 @@ public class FriendEntity extends TameableEntity {
                     itemstack.shrink(1);
                     this.playTameEffect(true);
                     return true;
-                } else if(item == cheeses.swill){
+                }
+                return false;
+            }
+            return false;
+        } else {
+            if (!itemstack.isEmpty()) {
+                if (item == cheeses.swill) {
                     this.hungryForWood = !this.hungryForWood;
                     itemstack.shrink(1);
                     return true;
@@ -76,10 +82,10 @@ public class FriendEntity extends TameableEntity {
             }
             return false;
         }
-        return false;
     }
+
     public boolean isHungryForWood (){
-        return hungryForWood;
+        return !hungryForWood;
     }
 
     @Nullable
