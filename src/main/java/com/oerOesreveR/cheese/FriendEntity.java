@@ -7,20 +7,29 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.world.NoteBlockEvent;
 
 import javax.annotation.Nullable;
 
 public class FriendEntity extends TameableEntity {
-    private boolean hungryForWood = true;
+    private boolean hungryForWood = false;
+    public Inventory pants;
+    public FriendContainer pockets;
+
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
+        pants = new Inventory(36);
         super.setSitting(false);
     }
 
@@ -63,9 +72,11 @@ public class FriendEntity extends TameableEntity {
             if (!itemstack.isEmpty()) {
                 if (item == cheeses.swiss) {
                     this.setTamedBy(player);
+                    pockets = new FriendContainer(player.inventory, this.pants, pockets.windowId, this);
                     super.setTamed(true);
                     itemstack.shrink(1);
                     this.playTameEffect(true);
+                    pants.isUsableByPlayer(player);
                     return true;
                 }
                 return false;
@@ -80,13 +91,25 @@ public class FriendEntity extends TameableEntity {
                     return true;
                 }
                 return false;
+            }else if(itemstack.isEmpty()){
+                this.checkPockets(player, this);
+                return true;
             }
             return false;
         }
     }
 
-    public boolean isHungryForWood (){
+    public boolean isHungryForWood () {
         return !hungryForWood;
+    }
+
+    public void checkPockets(PlayerEntity player, FriendEntity friend){
+        player.openContainer(new SimpleNamedContainerProvider((p_213701_1_, p_213701_2_, p_213701_3_) -> {
+            return new FriendContainer(p_213701_2_, this.getInventory(),p_213701_1_,this);
+        }, this.getDisplayName()));;
+    }
+    public Inventory getInventory (){
+        return this.pants;
     }
 
     @Nullable
@@ -94,4 +117,22 @@ public class FriendEntity extends TameableEntity {
     public AgeableEntity createChild(AgeableEntity ageable) {
         return null;
     }
+}
+class FriendContainer extends Container{
+    private PlayerInventory pInv;
+    private Inventory fInv;
+    private TameableEntity friend;
+
+    protected FriendContainer(PlayerInventory playerInventory, Inventory friendInventory, int id, TameableEntity friend) {
+        super(ContainerType.GENERIC_9X4, id);
+        this.pInv = playerInventory;
+        this.fInv = friendInventory;
+        this.friend = friend;
+    }
+
+    @Override
+    public boolean canInteractWith(PlayerEntity playerIn) {
+       return friend.isOwner(playerIn);
+    }
+
 }
