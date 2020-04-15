@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -118,12 +119,19 @@ class FriendContainer extends Container{
     private PlayerInventory pInv;
     private Inventory fInv;
     private TameableEntity friend;
+    private final NonNullList<ItemStack> inventoryItemStacks = NonNullList.create();
 
     protected FriendContainer(PlayerInventory playerInventory, Inventory friendInventory, int id, TameableEntity friend) {
         super(ContainerType.GENERIC_9X4, id);
         this.pInv = playerInventory;
         this.fInv = friendInventory;
         this.friend = friend;
+    }
+    protected Slot addSlot(Slot slotIn) {
+        slotIn.slotNumber = this.inventorySlots.size();
+        this.inventorySlots.add(slotIn);
+        this.inventoryItemStacks.add(ItemStack.EMPTY);
+        return slotIn;
     }
 
     @Override
