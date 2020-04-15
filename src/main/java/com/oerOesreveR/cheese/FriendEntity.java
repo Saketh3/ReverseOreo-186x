@@ -76,6 +76,7 @@ public class FriendEntity extends TameableEntity {
                 if (item == cheeses.swill) {
                     this.hungryForWood = !this.hungryForWood;
                     itemstack.shrink(1);
+                    this.playTameEffect(true);
                     return true;
                 }
                 return false;
