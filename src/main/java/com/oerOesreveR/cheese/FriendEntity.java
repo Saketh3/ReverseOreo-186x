@@ -83,19 +83,15 @@ public class FriendEntity extends TameableEntity {
             }
             return false;
         } else {
-            if (!itemstack.isEmpty()) {
-                if (item == cheeses.swill) {
-                    this.hungryForWood = !this.hungryForWood;
-                    itemstack.shrink(1);
-                    this.playTameEffect(true);
-                    return true;
-                }
-                return false;
-            }else if(itemstack.isEmpty()){
+            if (item == cheeses.swill) {
+                this.hungryForWood = !this.hungryForWood;
+                itemstack.shrink(1);
+                this.playTameEffect(true);
+                return true;
+            }else {
                 this.checkPockets(player, this);
                 return true;
             }
-            return false;
         }
     }
 
