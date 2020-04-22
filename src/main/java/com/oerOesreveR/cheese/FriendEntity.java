@@ -8,10 +8,14 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.IInventoryChangedListener;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -26,11 +30,12 @@ import javax.annotation.Nullable;
 public class FriendEntity extends TameableEntity {
     private boolean hungryForWood = false;
     public Inventory pants;
-    public FriendContainer pockets;
+    private NonNullList<ItemStack> friendContents;
 
     public FriendEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super((EntityType<? extends TameableEntity>) cheeses.Friend, worldIn);
         pants = new Inventory(36);
+        friendContents = NonNullList.withSize(36, ItemStack.EMPTY);
         super.setSitting(false);
     }
 
@@ -73,7 +78,6 @@ public class FriendEntity extends TameableEntity {
             if (!itemstack.isEmpty()) {
                 if (item == cheeses.swiss) {
                     this.setTamedBy(player);
-                    pockets = new FriendContainer(player.inventory, this.pants, pockets.windowId, this);
                     super.setTamed(true);
                     itemstack.shrink(1);
                     this.playTameEffect(true);
@@ -102,11 +106,17 @@ public class FriendEntity extends TameableEntity {
 
     public void checkPockets(PlayerEntity player, FriendEntity friend){
         player.openContainer(new SimpleNamedContainerProvider((p_213701_1_, p_213701_2_, p_213701_3_) -> {
-            return new FriendContainer(p_213701_2_, this.getInventory(),p_213701_1_,this);
-        }, this.getDisplayName()));;
+            return new FriendContainer(p_213701_2_, this.pants, p_213701_1_, this);
+        }
+        , this.getDisplayName()));;
     }
     public Inventory getInventory (){
         return this.pants;
+    }
+
+
+    private int getInventorySize() {
+        return pants.getSizeInventory();
     }
 
     @Nullable
@@ -114,11 +124,13 @@ public class FriendEntity extends TameableEntity {
     public AgeableEntity createChild(AgeableEntity ageable) {
         return null;
     }
+
 }
 class FriendContainer extends Container{
     private PlayerInventory pInv;
     private Inventory fInv;
     private TameableEntity friend;
+    private int numRows = 4;
     private final NonNullList<ItemStack> inventoryItemStacks = NonNullList.create();
 
     protected FriendContainer(PlayerInventory playerInventory, Inventory friendInventory, int id, TameableEntity friend) {
@@ -126,14 +138,52 @@ class FriendContainer extends Container{
         this.pInv = playerInventory;
         this.fInv = friendInventory;
         this.friend = friend;
-    }
-    protected Slot addSlot(Slot slotIn) {
-        slotIn.slotNumber = this.inventorySlots.size();
-        this.inventorySlots.add(slotIn);
-        this.inventoryItemStacks.add(ItemStack.EMPTY);
-        return slotIn;
+        int p = (0) * 18;
+
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 9; j++){
+                this.addSlot(new Slot(friendInventory, j + i * 9, 8 + j * 18, 18 + i * 18));
+            }
+        }
+        for(int l = 0; l < 3; ++l) {
+            for(int j1 = 0; j1 < 9; ++j1) {
+                this.addSlot(new Slot(playerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + p));
+            }
+        }
+
+        for(int i1 = 0; i1 < 9; ++i1) {
+            this.addSlot(new Slot(playerInventory, i1, 8 + i1 * 18, 161 + p));
+        }
     }
 
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+            if (index < this.numRows * 9) {
+                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+        }
+
+        return itemstack;
+    }
+
+    public void onContainerClosed(PlayerEntity playerIn) {
+        super.onContainerClosed(playerIn);
+        this.fInv.closeInventory(playerIn);
+    }
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
        return friend.isOwner(playerIn);
