@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
@@ -41,7 +42,7 @@ public class BreakTreeGoal extends Goal {
             this.navigator.tryMoveToXYZ(treeX, treeY, treeZ, 1);
             //break
             if(isThere(treeX, treeY, treeZ)){
-                world.removeBlock(treeBottom, false);
+                world.destroyBlock(treeBottom, true);
             }
         }else{
             //be sad, move to random location to find more trees

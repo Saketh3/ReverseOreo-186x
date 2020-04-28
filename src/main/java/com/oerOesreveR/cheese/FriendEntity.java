@@ -108,7 +108,7 @@ public class FriendEntity extends TameableEntity {
         player.openContainer(new SimpleNamedContainerProvider((p_213701_1_, p_213701_2_, p_213701_3_) -> {
             return new FriendContainer(p_213701_2_, this.pants, p_213701_1_, this);
         }
-        , this.getDisplayName()));;
+        , this.getDisplayName()));
     }
     public Inventory getInventory (){
         return this.pants;
