@@ -101,7 +101,7 @@ public class FriendEntity extends TameableEntity {
     }
 
     public boolean isHungryForWood () {
-        return !hungryForWood;
+        return hungryForWood;
     }
 
     public void checkPockets(PlayerEntity player, FriendEntity friend){
