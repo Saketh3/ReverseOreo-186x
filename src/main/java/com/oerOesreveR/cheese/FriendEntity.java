@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
@@ -88,7 +89,7 @@ public class FriendEntity extends TameableEntity {
             }
             return false;
         } else {
-            if (item == cheeses.swill) {
+            if (item.isIn(ItemTags.LOGS)) {
                 this.hungryForWood = !this.hungryForWood;
                 itemstack.shrink(1);
                 this.playTameEffect(true);
