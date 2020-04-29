@@ -18,7 +18,7 @@
         "show_toast": true,
         "announce_to_chat": true,
         "hidden": false,
-        "background": "minecraft:textures/gui/advancements/backgrounds/lava.png"
+        "background": "minecraft:textures/gui/advancements/backgrounds/oak_planks.png"
     },
     "criteria": {
         "Cheese": {
